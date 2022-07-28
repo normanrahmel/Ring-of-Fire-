@@ -1,11 +1,11 @@
-<div class="game-field">
+<div class="field">
     <div class="card-stack">
-        <img (click)="takeCard()" [class.pick-card]="pickCardAnimation" class="animate-card" src="/assets/img/cards/aces.png">
+        <!---->
+        <img *ngFor="let c of [0,1,2,3,4]; let i= index;" [ngStyle]="{'right.px': i * 5} " src="/assets/img/cards/card_cover.png">
+        <!---->
+        <img (click)="takeCard()" class="top-card" style="right: 25px;" src="/assets/img/cards/card_cover.png">
+        <!---->
+        <img (click)="takeCard()" *ngIf="pickCardAnimation" style="right: 25px;" class="pick-card" src="/assets/img/cards/spade_1.png">
 
     </div>
 </div>
-
-
-<!-- Inline For-Loop *ngFor="let card of [1,2,3,4,5]" 
-        let i = index; [ngStyle="{'right.px': i * 5}"]
-        -->

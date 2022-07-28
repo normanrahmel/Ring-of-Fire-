@@ -13,5 +13,6 @@ export class GameComponent implements OnInit {
 
   takeCard() {
     this.pickCardAnimation = true;
+    
   }
 }
