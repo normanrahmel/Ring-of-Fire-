@@ -1,21 +1,19 @@
 <!--Position Spieler-->
-<app-player style="top: 130px;" class="player-position"></app-player>
+<app-player *ngFor="let player of game.players; let i = index" [ngStyle]="{ 'top.px': 100 + i * 120 }" class="player-position" [name]="player"></app-player>
 
 <!--Kartenspielfeld-->
 <div class="field">
     <div class="card-stack">
-
         <!--Karten Stapel-->
-        <img *ngFor="let c of [0,1,2,3,4]; let i= index;" [ngStyle]="{'right.px': i * 5} " src="/assets/img/cards/card_cover.png">
+        <img *ngFor="let c of [0, 1, 2, 3, 4]; let i = index" [ngStyle]="{ 'right.px': i * 5 }" src="/assets/img/cards/card_cover.png" />
 
         <!--Oberstekarte im Deck-->
-        <img (click)="takeCard()" class="top-card" style="right: 25px;" src="/assets/img/cards/card_cover.png">
-
+        <img (click)="takeCard()" class="top-card" style="right: 25px" src="/assets/img/cards/card_cover.png" />
 
         <!--Karte bleibt wenn gespielt Liegen -->
-        <img *ngFor="let card of game.playedCards" class="played-card" src="/assets/img/cards/{{ card }}.png">
+        <img *ngFor="let card of game.playedCards" class="played-card" src="/assets/img/cards/{{ card }}.png" />
 
         <!--Fliegendekarte Animation-->
-        <img (click)="takeCard()" *ngIf="pickCardAnimation" style="right: 25px;" class="pick-card" src="/assets/img/cards/{{ currentCard }}.png">
+        <img (click)="takeCard()" *ngIf="pickCardAnimation" style="right: 25px" class="pick-card" src="/assets/img/cards/{{ currentCard }}.png" />
     </div>
 </div>
