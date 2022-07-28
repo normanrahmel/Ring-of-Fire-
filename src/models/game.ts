@@ -5,11 +5,11 @@ export class Game {
   public currenPlayer: number = 0;
 
   constructor() {
-    for (let i = 0; i < 14; i++) {
+    for (let i = 1; i < 14; i++) {
       this.stack.push('spade_' + i);
-      this.stack.push('hearts' + i);
-      this.stack.push('diamonds' + i);
-      this.stack.push('clubs' + i);
+      this.stack.push('hearts_' + i);
+      this.stack.push('diamonds_' + i);
+      this.stack.push('clubs_' + i);
     }
     shuffle(this.stack);
   }

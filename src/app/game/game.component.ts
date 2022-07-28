@@ -7,6 +7,7 @@ import { Game } from 'src/models/game';
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
+  currentCard: string = '';
   pickCardAnimation = false;
   //Speicher das Game Objekt in einer neuen Variable
   game!: Game;
@@ -23,6 +24,14 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    this.pickCardAnimation = true;
+    if (!this.pickCardAnimation) {
+      this.currentCard = this.game.stack.pop();
+      this.pickCardAnimation = true;
+      
+      setTimeout(() => {
+        this.game.playedCards.push(this.currentCard);
+        this.pickCardAnimation = false;
+      }, 1000);
+    }
   }
 }
