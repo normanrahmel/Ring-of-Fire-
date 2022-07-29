@@ -1,9 +1,10 @@
 <!--Position Spieler-->
 <app-player
   *ngFor="let player of game.players; let i = index"
-  [ngStyle]="{ 'top.px': 100 + i * 120 }"
+  [ngStyle]="{ 'top.px': 100 + i * 90 }"
   class="player-position"
   [name]="player"
+  [playerActive]="i == game.currentPlayer"
 ></app-player>
 
 <!--Kartenspielfeld-->
@@ -41,5 +42,9 @@
     />
   </div>
 </div>
+<!--Gibt die Info was getan werden muss wenn Karte gespielt wird-->
+<app-game-info [card]="currentCard" class="pin-bottom"></app-game-info>
+<!--Button um neue Spieler hinzuzufügen-->
 <button (click)="openDialog()" mat-fab color="primary" class="btn-add">
   <mat-icon>add</mat-icon>
+</button>
