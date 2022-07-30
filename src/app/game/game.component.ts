@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
-
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -16,11 +16,17 @@ export class GameComponent implements OnInit {
   animal: any;
   name: any;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(private firestore: AngularFirestore, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.game = new Game();
     console.log(this.game);
+    this.firestore
+      .collection('items')
+      .valueChanges()
+      .subscribe((game) => {
+        console.log(game);
+      });
   }
 
   newGame() {
