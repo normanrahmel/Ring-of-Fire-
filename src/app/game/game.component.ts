@@ -3,6 +3,8 @@ import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -16,21 +18,38 @@ export class GameComponent implements OnInit {
   animal: any;
   name: any;
 
-  constructor(private firestore: AngularFirestore, public dialog: MatDialog) {}
+  constructor(
+    private route: ActivatedRoute,
+    private firestore: AngularFirestore,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
-    this.game = new Game();
+    //Erstellt neues Game
+    this.newGame();
     console.log(this.game);
-    this.firestore
-      .collection('items')
-      .valueChanges()
-      .subscribe((game) => {
-        console.log(game);
-      });
+
+    //Wandelt die URL immer auf das Akteulle spiel ab
+    this.route.params.subscribe((params: any) => {
+      console.log(params.id);
+
+      this.firestore
+        .collection('Games')
+        .valueChanges()
+        .subscribe((game: any) => {
+          console.log('Game Update', game);
+          this.game.currentPlayer = game.currentPlayer;
+          this.game.playedCards = game.playedCards;
+          this.game.stack = game.stack;
+          this.game.players = game.players;
+        });
+    });
   }
 
   newGame() {
     this.game = new Game();
+    //this.firestore.collection('Games').add(this.game.toJson());
+    //doc(params.id).  //items
   }
 
   takeCard() {
