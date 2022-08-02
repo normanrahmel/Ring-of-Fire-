@@ -15,27 +15,16 @@ export class StartScreenComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async newGame() {
+  newGame() {
     //StartGame
     let game = new Game();
-    //this.router.navigateByUrl('/game');
-    //const coll: any = collection(this.firestore, 'games');
-    //console.log('Generierte Id', coll);
 
-    //let gameInfo = await addDoc(coll, { game: Game.toJson() });
-    //console.log(gameInfo);
-
-    //NEW
-    try {
-      this.firestore
-        .collection('Games')
-        .add(this.game.toJson())
-        .then((gameInfo: any) => {
-          console.log(gameInfo);
-          this.router.navigateByUrl('/game/' + gameInfo.id);
-        });
-    } catch (error) {
-      console.log(this.game.toJson(), error);
-    }
+    this.firestore
+      .collection('Games')
+      .add(game.toJson())
+      .then((gameInfo: any) => {
+        console.log(gameInfo);
+        this.router.navigateByUrl('/game/' + gameInfo.id);
+      });
   }
 }
