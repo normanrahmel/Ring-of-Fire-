@@ -17,6 +17,7 @@ export class GameComponent implements OnInit {
   game!: Game;
   animal: any;
   name: any;
+  gameId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,9 +33,11 @@ export class GameComponent implements OnInit {
     //Wandelt die URL immer auf das Akteulle spiel ab
     this.route.params.subscribe((params: any) => {
       console.log(params.id);
+      this.gameId = params.id;
 
       this.firestore
         .collection('Games')
+        .doc(this.gameId)
         .valueChanges()
         .subscribe((game: any) => {
           console.log('Game Update', game);
@@ -48,8 +51,6 @@ export class GameComponent implements OnInit {
 
   newGame() {
     this.game = new Game();
-    //this.firestore.collection('Games').add(this.game.toJson());
-    //doc(params.id).  //items
   }
 
   takeCard() {
@@ -74,7 +75,15 @@ export class GameComponent implements OnInit {
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
         this.game.players.push(name);
+        this.saveGame();
       }
     });
+  }
+
+  saveGame() {
+    this.firestore
+      .collection('Games')
+      .doc(this.gameId)
+      .update(this.game.toJson());
   }
 }
