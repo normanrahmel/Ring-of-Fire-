@@ -1,5 +1,5 @@
+/*ringoffire_startscreen #404040*/
 .start-screen {
-    background-color: #404040;
     width: 100vw;
     height: 100vh;
     max-width: 100%;
@@ -8,6 +8,8 @@
     justify-content: center;
     img {
         height: 100vh;
+        width: 100vw;
+        object-fit: cover;
     }
 }
 
@@ -17,9 +19,9 @@
     right: 0;
     display: flex;
     justify-content: center;
-    bottom: 50px;
+    bottom: 350px;
     img {
-        width: 30vw;
+        width: 25vw;
         height: auto;
         &:hover {
             filter: brightness(1.2);
