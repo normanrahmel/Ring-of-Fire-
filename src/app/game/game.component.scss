@@ -5,7 +5,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('/assets/img/board.jpg');
+    background-image: url("/assets/img/game_bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .card-stack {
