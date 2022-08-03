@@ -45,6 +45,16 @@
 <!--Gibt die Info was getan werden muss wenn Karte gespielt wird-->
 <app-game-info [card]="currentCard" class="pin-bottom"></app-game-info>
 <!--Button um neue Spieler hinzuzufügen-->
-<button (click)="openDialog()" mat-fab color="primary" class="btn-add">
+<button (click)="openDialog()" mat-fab color="basic" class="btn-add">
   <mat-icon>add</mat-icon>
+</button>
+<!--Button um neue Spiel zu teilen-->
+<button
+  class="btn-share"
+  mat-fab
+  color="basic"
+  (click)="shareDialog()"
+  matTooltip="share game"
+>
+  <mat-icon>share</mat-icon>
 </button>

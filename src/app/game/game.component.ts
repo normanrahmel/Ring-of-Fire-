@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { DialogShareComponent } from '../dialog-share/dialog-share.component';
 
 @Component({
   selector: 'app-game',
@@ -56,6 +57,7 @@ export class GameComponent implements OnInit {
   takeCard() {
     if (!this.pickCardAnimation) {
       this.currentCard = this.game.stack.pop();
+      this.saveGame();
       this.pickCardAnimation = true;
 
       //Hier definiere ich das immer der aktuelle Spieler an der Reihe ist
@@ -65,6 +67,7 @@ export class GameComponent implements OnInit {
       setTimeout(() => {
         this.game.playedCards.push(this.currentCard);
         this.pickCardAnimation = false;
+        this.saveGame();
       }, 1000);
     }
   }
@@ -85,5 +88,12 @@ export class GameComponent implements OnInit {
       .collection('Games')
       .doc(this.gameId)
       .update(this.game.toJson());
+  }
+
+  /**
+   * calls a dialog to facilitate copying the url of the game
+   */
+  shareDialog(): void {
+    this.dialog.open(DialogShareComponent);
   }
 }
