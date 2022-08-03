@@ -35,15 +35,15 @@
     <!--Fliegendekarte Animation-->
     <img
       (click)="takeCard()"
-      *ngIf="pickCardAnimation"
+      *ngIf="game.pickCardAnimation"
       style="right: 25px"
       class="pick-card"
-      src="/assets/img/cards/{{ currentCard }}.png"
+      src="/assets/img/cards/{{ game.currentCard }}.png"
     />
   </div>
 </div>
 <!--Gibt die Info was getan werden muss wenn Karte gespielt wird-->
-<app-game-info [card]="currentCard" class="pin-bottom"></app-game-info>
+<app-game-info [card]="game.currentCard" class="pin-bottom"></app-game-info>
 <!--Button um neue Spieler hinzuzufügen-->
 <button (click)="openDialog()" mat-fab color="basic" class="btn-add">
   <mat-icon>add</mat-icon>
