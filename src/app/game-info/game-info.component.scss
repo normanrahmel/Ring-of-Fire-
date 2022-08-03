@@ -2,3 +2,8 @@
     background-color: #56a16ea3;
     color: whitesmoke;
 }
+mat-card {
+    @media (max-width: 720px) {
+        min-height: 120px;
+    }
+}

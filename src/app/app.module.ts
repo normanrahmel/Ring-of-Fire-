@@ -23,6 +23,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { DialogShareComponent } from './dialog-share/dialog-share.component';
+import { PlayerMobileComponent } from './player-mobile/player-mobile.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DialogShareComponent } from './dialog-share/dialog-share.component';
     DialogAddPlayerComponent,
     GameInfoComponent,
     DialogShareComponent,
+    PlayerMobileComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
