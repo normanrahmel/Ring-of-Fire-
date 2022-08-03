@@ -61,11 +61,19 @@
     position: absolute;
     right: 32px;
     bottom: 32px;
+    @media (max-width: 720px) {
+        bottom: 20px;
+        right: 25px;
+    }
 }
 .btn-share {
     position: absolute;
     right: 32px;
     bottom: 110px;
+    @media (max-width: 720px) {
+        bottom: 170px;
+        right: 25px;
+    }
 }
 
 .pin-bottom {
