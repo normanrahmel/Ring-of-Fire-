@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dialog-share',
@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogShareComponent implements OnInit {
   constructor() {}
-  gameId: string;
+
   ngOnInit(): void {}
+
+  getURL() {
+    navigator.clipboard.writeText(window.location.href);
+    document.getElementById('message').classList.remove('d-none');
+  }
 }

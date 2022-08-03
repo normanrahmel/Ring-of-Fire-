@@ -1,15 +1,16 @@
 <h1 mat-dialog-title>Invite your friends</h1>
 
 <p>Click on the button to copy the link and share it with your friends</p>
-
+<span class="d-none" id="message">Copied to clipboard</span>
 <mat-dialog-content class="share">
-  <span>http://localhost:4200/game/{{ gameId }}</span>
-  <button mat-flat-button matTooltip="copy url">
+  <button (click)="getURL()" mat-flat-button matTooltip="copy url">
     <mat-icon class="material-symbols-outlined"> content_copy </mat-icon>
   </button>
 </mat-dialog-content>
 
 <!--War bei Button drin
 // [cdkCopyToClipboard]="path"
+<button type="button" onclick="getURL();">Get Page URL</button>
+
 -->
 <!--<span>{{ path }}</span>-->
