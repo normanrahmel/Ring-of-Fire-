@@ -1,17 +1,21 @@
 <!--Position Spieler-Desktop-->
 <app-player
+  (click)="editPlayer(i)"
   *ngFor="let player of game.players; let i = index"
   [ngStyle]="{ 'top.px': 100 + i * 90 }"
   class="player-position hide-mobile"
   [name]="player"
+  [image]="game.player_images[i]"
   [playerActive]="i == game.currentPlayer"
 ></app-player>
 <!--Position Spieler-Mobile-->
 <!--[ngStyle]="{ 'left.px': 10 + i * 95, 'top.px': 0 }"-->
 <div class="scroll-container hide-desktop">
   <app-player-mobile
+    (click)="editPlayer(i)"
     *ngFor="let player of game.players; let i = index"
     [name]="player"
+    [image]="game.player_images[i]"
     [playerActive]="i == game.currentPlayer"
   ></app-player-mobile>
 </div>

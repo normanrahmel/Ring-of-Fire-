@@ -5,6 +5,7 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { DialogShareComponent } from '../dialog-share/dialog-share.component';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
 
 @Component({
   selector: 'app-game',
@@ -44,9 +45,9 @@ export class GameComponent implements OnInit {
           this.game.playedCards = game.playedCards;
           this.game.stack = game.stack;
           this.game.players = game.players;
+          this.game.player_images = game.player_images;
           this.game.pickCardAnimation = game.pickCardAnimation;
           this.game.currentCard = game.currentCard;
-          //this.game.gameId = game.gameId;
         });
     });
   }
@@ -80,6 +81,7 @@ export class GameComponent implements OnInit {
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
         this.game.players.push(name);
+        this.game.player_images.push('1.webp');
         this.saveGame();
       }
     });
@@ -97,5 +99,22 @@ export class GameComponent implements OnInit {
    */
   shareDialog(): void {
     this.dialog.open(DialogShareComponent);
+  }
+
+  editPlayer(playerId: number) {
+    console.log('Edit Player', playerId);
+    const dialogRef = this.dialog.open(EditPlayerComponent);
+    dialogRef.afterClosed().subscribe((change: string) => {
+      console.log('Chance Picture', change);
+      if (change) {
+        if (change == 'DELETE') {
+          this.game.players.splice(playerId, 1);
+          this.game.player_images.splice(playerId, 1);
+        } else {
+          this.game.player_images[playerId] = change;
+        }
+        this.saveGame();
+      }
+    });
   }
 }
