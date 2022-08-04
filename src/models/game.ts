@@ -7,7 +7,7 @@ export class Game {
   public gameName: string = '';
   public currentCard: string = '';
   public pickCardAnimation = false;
-  //public gameId: string;
+  //public gameId: string; 14
 
   constructor() {
     for (let i = 1; i < 14; i++) {
@@ -28,7 +28,6 @@ export class Game {
       currentPlayer: this.currentPlayer,
       pickCardAnimation: this.pickCardAnimation,
       currentCard: this.currentCard,
-      //  gameId: this.gameId,
     };
   }
 }

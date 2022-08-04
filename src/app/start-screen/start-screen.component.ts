@@ -14,6 +14,8 @@ export class StartScreenComponent implements OnInit {
   constructor(private router: Router, private firestore: AngularFirestore) {}
 
   ngOnInit(): void {}
+  startGameSound = new Audio('/assets/sounds/startgame.mp3');
+  loadStackSound = new Audio('/assets/sounds/loadStack.mp3');
 
   newGame() {
     //StartGame
@@ -26,5 +28,13 @@ export class StartScreenComponent implements OnInit {
         console.log(gameInfo);
         this.router.navigateByUrl('/game/' + gameInfo.id);
       });
+    this.startGameSound.play();
+    this.stackSoundPlayed();
+  }
+
+  stackSoundPlayed() {
+    setTimeout(() => {
+      this.loadStackSound.play();
+    }, 1200);
   }
 }

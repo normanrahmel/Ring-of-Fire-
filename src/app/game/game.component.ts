@@ -18,6 +18,8 @@ export class GameComponent implements OnInit {
   animal: any;
   name: any;
   gameId: string;
+  gameOver: boolean = false;
+  playedCardSound = new Audio('/assets/sounds/playedcard.mp3');
 
   constructor(
     private route: ActivatedRoute,
@@ -57,7 +59,9 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if (!this.game.pickCardAnimation) {
+    if (this.game.stack.length == 0) {
+      this.gameOver = true;
+    } else if (!this.game.pickCardAnimation) {
       this.game.currentCard = this.game.stack.pop();
       this.game.pickCardAnimation = true;
       //Hier definiere ich das immer der aktuelle Spieler an der Reihe ist
@@ -65,6 +69,7 @@ export class GameComponent implements OnInit {
       this.game.currentPlayer =
         this.game.currentPlayer % this.game.players.length;
 
+      this.playedCardSound.play();
       this.saveGame();
 
       setTimeout(() => {
@@ -103,9 +108,12 @@ export class GameComponent implements OnInit {
 
   editPlayer(playerId: number) {
     console.log('Edit Player', playerId);
+
     const dialogRef = this.dialog.open(EditPlayerComponent);
+
     dialogRef.afterClosed().subscribe((change: string) => {
       console.log('Chance Picture', change);
+
       if (change) {
         if (change == 'DELETE') {
           this.game.players.splice(playerId, 1);

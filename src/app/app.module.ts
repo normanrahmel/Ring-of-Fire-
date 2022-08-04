@@ -25,6 +25,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { DialogShareComponent } from './dialog-share/dialog-share.component';
 import { PlayerMobileComponent } from './player-mobile/player-mobile.component';
 import { EditPlayerComponent } from './edit-player/edit-player.component';
+import { DataImprintComponent } from './data-imprint/data-imprint.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { EditPlayerComponent } from './edit-player/edit-player.component';
     DialogShareComponent,
     PlayerMobileComponent,
     EditPlayerComponent,
+    DataImprintComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

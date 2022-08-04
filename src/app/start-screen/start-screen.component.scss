@@ -87,7 +87,23 @@ button {
     text-align: center;
     color: #e2eaf3;
     font-family: Verdana;
-    font-size: 1.9em;
 
     text-decoration: none;
+}
+.DataImprint {
+    position: fixed;
+    left: 0;
+    right: 20px;
+    bottom: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+    a {
+        color: white;
+        text-decoration: none;
+
+        &hover {
+            cursor: pointer;
+        }
+    }
 }

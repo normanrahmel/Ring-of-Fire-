@@ -2,12 +2,13 @@
 <app-player
   (click)="editPlayer(i)"
   *ngFor="let player of game.players; let i = index"
-  [ngStyle]="{ 'top.px': 100 + i * 90 }"
+  [ngStyle]="{ 'top.px': 30 + i * 70 }"
   class="player-position hide-mobile"
   [name]="player"
   [image]="game.player_images[i]"
   [playerActive]="i == game.currentPlayer"
 ></app-player>
+
 <!--Position Spieler-Mobile-->
 <!--[ngStyle]="{ 'left.px': 10 + i * 95, 'top.px': 0 }"-->
 <div class="scroll-container hide-desktop">
@@ -19,8 +20,14 @@
     [playerActive]="i == game.currentPlayer"
   ></app-player-mobile>
 </div>
+
+<!--GameOver-->
+<div *ngIf="gameOver" class="gameOver">
+  <img src="/assets/img/game-over.jpg" alt="" />
+</div>
+
 <!--Kartenspielfeld-->
-<div class="field">
+<div *ngIf="!gameOver" class="field">
   <div class="card-stack">
     <!--Karten Stapel-->
     <img
@@ -54,14 +61,28 @@
     />
   </div>
 </div>
+
 <!--Gibt die Info was getan werden muss wenn Karte gespielt wird-->
-<app-game-info [card]="game.currentCard" class="pin-bottom"></app-game-info>
+<app-game-info
+  *ngIf="!gameOver"
+  [card]="game.currentCard"
+  class="pin-bottom"
+></app-game-info>
+
 <!--Button um neue Spieler hinzuzufügen-->
-<button (click)="openDialog()" mat-fab color="basic" class="btn-add">
+<button
+  *ngIf="!gameOver"
+  (click)="openDialog()"
+  mat-fab
+  color="basic"
+  class="btn-add"
+>
   <mat-icon>add</mat-icon>
 </button>
+
 <!--Button um neue Spiel zu teilen-->
 <button
+  *ngIf="!gameOver"
   class="btn-share"
   mat-fab
   color="basic"
@@ -70,3 +91,8 @@
 >
   <mat-icon>share</mat-icon>
 </button>
+
+<img
+  class="preloadImage"
+  src="/assets/img/cards/{{ game.stack[game.stack.length - 1] }}.png"
+/>
