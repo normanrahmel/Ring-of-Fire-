@@ -13,5 +13,8 @@ export class DialogShareComponent implements OnInit {
   getURL() {
     navigator.clipboard.writeText(window.location.href);
     document.getElementById('message').classList.remove('d-none');
+    setTimeout(() => {
+      document.getElementById('message').classList.add('d-none');
+    }, 2000);
   }
 }
